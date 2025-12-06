@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Um mergulho educativo para descobrir espécies fascinantes e aprender a protegê-las" />
+  <title>Habitantes do Oceano Azul 🐬 — Descubra o mistério e a beleza das criaturas do fundo do mar</title>
+  <style>
+    :root{
+      --bg:#e6f7fb;
+      --card:#ffffff;
+      --text:#053642;
+      --muted:#264653;
+      --accent:#2a9d8f;
+      --accent-2:#e76f51;
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 6px 18px rgba(3, 37, 44, 0.12);
+      --radius:14px;
+      --focus: 3px solid rgba(42,157,143,0.25);
+      --transition: 250ms cubic-bezier(.2,.9,.3,1);
+    }
+    html.dark{
+      --bg:#042027;
+      --card:#052b2a;
+      --text:#e6f7fb;
+      --muted:#cfecec;
+      --accent:#8bd3c9;
+      --accent-2:#ffb59b;
+      --glass: rgba(6,22,22,0.5);
+      --shadow: 0 8px 22px rgba(0,0,0,0.6);
+      --focus: 3px solid rgba(139,211,201,0.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(closest-side at 20% 10%, rgba(42,157,143,0.06), transparent 10%),
+                  linear-gradient(180deg, var(--bg) 0%, rgba(255,255,255,0.4) 100%);
+      color:var(--text);
+      line-height:1.45;
+      transition: background var(--transition), color var(--transition);
+      padding:0 1rem;
+    }
+    .container{max-width:1100px;margin:0 auto;padding:clamp(1rem,3vw,2rem) 0}
+    header{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.25rem}
+    .brand{display:flex;align-items:center;gap:.75rem}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:
+      linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;
+      box-shadow:var(--shadow);
+      flex:0 0 56px;
+    }
+    nav[aria-label="Principal"]{display:flex;gap:.5rem;flex-wrap:wrap}
+    nav a{
+      text-decoration:none;padding:.45rem .65rem;border-radius:10px;color:var(--muted);
+      background:transparent;border:0;font-weight:600;font-size:.95rem;transition:background var(--transition),transform var(--transition);
+    }
+    nav a:hover{transform:translateY(-2px); color:var(--text)}
+    .controls{display:flex;gap:.5rem;align-items:center}
+    .hero{
+      display:grid;grid-template-columns:1fr 420px;gap:1.25rem;align-items:center;
+      background:linear-gradient(180deg, rgba(255,255,255,0.4), transparent);
+      padding:clamp(1rem,2vw,1.5rem);border-radius:var(--radius);box-shadow:var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+    h1{font-size:clamp(1.4rem,2.5vw,2.2rem);margin:.1rem 0 .25rem}
+    .slogan{font-size:1rem;margin:0;color:var(--muted)}
+    .summary{margin-top:.6rem;color:var(--muted);font-size:.96rem}
+    .hero-actions{display:flex;gap:.6rem;margin-top:1rem;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;padding:.6rem .9rem;border-radius:10px;border:0;
+      cursor:pointer;font-weight:700;background:var(--accent);color:white;box-shadow:0 6px 14px rgba(42,157,143,0.18);
+      transition:transform var(--transition),box-shadow var(--transition),opacity var(--transition);
+    }
+    .btn.secondary{background:transparent;color:var(--text);border:1px solid rgba(3,37,44,0.06)}
+    .btn:active{transform:translateY(1px)}
+    .hero-visual{display:flex;align-items:center;justify-content:center;padding:1rem;background:var(--glass);border-radius:12px}
+    .hero-visual img{width:100%;height:auto;border-radius:10px;display:block;max-height:360px;object-fit:cover}
+    main{margin-top:1.25rem}
+    section{margin:1.1rem 0;padding:1rem;border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .curios-list{display:flex;flex-direction:column;gap:.6rem;padding:0;margin:0;list-style:none}
+    .curios-item{display:flex;gap:.75rem;align-items:flex-start}
+    .curios-icon{
+      width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),transparent);display:inline-flex;
+      align-items:center;justify-content:center;color:white;font-weight:700;flex:0 0 40px;box-shadow:var(--shadow);font-size:1rem
+    }
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+    .gallery figure{margin:0;border-radius:10px;overflow:hidden;background:var(--glass);display:flex;flex-direction:column}
+    .gallery img{width:100%;height:180px;object-fit:cover;display:block;transition:transform var(--transition)}
+    .gallery figure:hover img{transform:scale(1.03)}
+    .gallery figcaption{padding:.5rem .6rem;font-size:.9rem;color:var(--muted)}
+    details{margin:.5rem 0;padding:.6rem;border-radius:10px;background:transparent}
+    summary{font-weight:700;cursor:pointer}
+    .cta{display:flex;gap:.5rem;align-items:center;justify-content:center;padding:1rem;border-radius:10px}
+    .cta a{padding:.7rem 1rem;border-radius:10px;text-decoration:none;background:var(--accent);color:white;font-weight:800}
+    footer{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.8rem 0;color:var(--muted);font-size:.95rem}
+  </style>
+
+   <!-- Bibliotecas -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.8.0/dist/tf.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">🐳</div>
+        <div>
+          <div style="font-weight:800;">Habitantes do Oceano Azul</div>
+          <div style="font-size:.85rem;color:var(--muted)">Descubra o mistério e a beleza das criaturas do fundo do mar</div>
+        </div>
+      </div>
+      <nav aria-label="Principal">
+        <a href="#curiosidades">Curiosidades</a>
+        <a href="#fatos">Fatos</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button id="themeToggle" class="btn secondary" aria-pressed="false">🌓 Tema</button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <h1>Habitantes do Oceano Azul🐬</h1>
+          <p class="slogan">Descubra o mistério e a beleza das criaturas do fundo do mar</p>
+          <p class="summary">Um mergulho educativo para descobrir espécies fascinantes e aprender a protegê-las</p>
+          <div class="hero-actions">
+            <button id="abrirIA" class="btn">📷 Reconhecimento Facial</button>
+            <button id="btnAbrirChatbot" class="btn secondary">💬 Abrir Chatbot</button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="static/imagens_projeto/imagem_hero.png" alt="Imagem principal do projeto Habitantes do Oceano Azul">
+        </div>
+      </section>
+
+      <section id="curiosidades">
+        <h2>Curiosidades</h2>
+        <ul class="curios-list">
+          <li class="curios-item"><div class="curios-icon">1</div><div>Algumas tartarugas marinhas podem viajar mais de 10 mil km por ano.</div></li>
+          <li class="curios-item"><div class="curios-icon">2</div><div>Os golfinhos dormem com apenas metade do cérebro, mantendo o outro alerta para respirar.</div></li>
+          <li class="curios-item"><div class="curios-icon">3</div><div>O polvo possui três corações e muda de cor para se camuflar.</div></li>
+          <li class="curios-item"><div class="curios-icon">4</div><div>Os cavalos-marinhos são os únicos animais em que o macho carrega os filhotes.</div></li>
+          <li class="curios-item"><div class="curios-icon">5</div><div>As baleias se comunicam com sons que podem viajar centenas de quilômetros de distância.</div></li>
+        </ul>
+      </section>
+
+      <section id="fatos">
+        <h2>Fatos & Ciência</h2>
+        <div class="grid-3">
+          <article class="card"><h3>A importância do plâncton</h3><p>O plâncton é a base da cadeia alimentar marinha e produz mais da metade do oxigênio do planeta.</p></article>
+          <article class="card"><h3>Corais: animais disfarçados de plantas</h3><p>Apesar de parecerem flores, os corais são pequenos animais que vivem em colônias e formam recifes gigantescos.</p></article>
+          <article class="card"><h3>As profundezas inexploradas</h3><p>Mais de 80% do oceano ainda não foi explorado — há espécies que os cientistas nem imaginam que existam.</p></article>
+        </div>
+      </section>
+
+      <section id="galeria">
+        <h2>Galeria</h2>
+        <div class="gallery">
+          <figure><img src="static/imagens_projeto/oceanobonito.png" alt="Oceano azul"><figcaption>Oceano azul</figcaption></figure>
+          <figure><img src="static/imagens_projeto/peixescoloridos.png" alt="Peixes coloridos"><figcaption>Peixes coloridos</figcaption></figure>
+          <figure><img src="static/imagens_projeto/tartarugamarinha.png" alt="Tartaruga marinha"><figcaption>Tartaruga marinha</figcaption></figure>
+          <figure><img src="static/imagens_projeto/golfinhomarinho.png" alt="Golfinho no oceano"><figcaption>Golfinho no oceano</figcaption></figure>
+          <figure><img src="static/imagens_projeto/baleiafofus.png" alt="Baleia"><figcaption>Baleia</figcaption></figure>
+          <figure><img src="static/imagens_projeto/corallindo.png" alt="Coral marinho"><figcaption>Coral marinho</figcaption></figure>
+        </div>
+      </section>
+
+      <section id="faq">
+        <h2>Perguntas Frequentes (FAQ)</h2>
+        <details><summary>Qual o animal marinho mais rápido?</summary><p>O atum-rabilho, que pode nadar a 70 km/h!</p></details>
+        <details><summary>O que são marés?</summary><p>São variações do nível do mar causadas pela gravidade da Lua e do Sol.</p></details>
+        <details><summary>O oceano está realmente em perigo?</summary><p>Sim, por conta do aquecimento global e do plástico.</p></details>
+      </section>
+
+      <section class="cta">
+        <a href="#fatos">Aprenda mais</a>
+        <a href="#galeria">Baixar material</a>
+      </section>
+
+      <section id="credits">
+        <h2>Créditos & Fontes</h2>
+        <p>Fotos de Unsplash, Pexels e Pixabay.<br>Informações: WWF Brasil, National Geographic, Instituto Oceanográfico da USP.<br>Design e código por Maily e Thais.</p>
+      </section>
+    </main>
+
+<!-- Chatbot -->
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+<df-messenger
+  intent="WELCOME"
+  chat-title="ECOBOT"
+  agent-id="6c106d6c-eef7-41db-92b4-5bf82848937e"
+  language-code="pt-br">
+</df-messenger>
+
+    
+    <footer>
+      <small>&copy; <span id="currentYear"></span> Habitantes do Oceano Azul</small>
+      <a href="#top">Voltar ao topo ↑</a>
+    </footer>
+  </div>
+ 
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    const body = document.documentElement;
+    document.getElementById('themeToggle').addEventListener('click',()=>{
+      body.classList.toggle('dark');
+    });
+
+  </script>
+
+  <!-- Modal da câmera (inicialmente escondido) -->
+  <div id="cameraModal" class="modal" aria-hidden="true" style="display:none;">
+    <div class="modal-content">
+      <button id="fecharModal" class="botao-fechar" title="Fechar">❌</button>
+      <h2 class="modal-title">Reconhecimento Facial</h2>
+      <div class="video-wrap">
+        <video id="video" autoplay muted playsinline></video>
+      </div>
+      <div class="controls">
+        <button id="tirarFoto" class="botao-foto" title="Tirar foto">📸</button>
+      </div>
+      <p id="modalStatus" class="modal-status">Aguardando...</p>
+      <canvas id="fotoCanvas" style="display:none;"></canvas>
+    </div>
+  </div>
+     <!-- Script principal -->
+    <script defer src="script.js"></script>
+
+</body>
+</html>
